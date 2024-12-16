@@ -485,6 +485,45 @@ section {
     width: 24px;
     height: 24px;
 }
+
+.faq-item {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.faq-question {
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--dark-gray);
+}
+
+.faq-question::after {
+    content: '+';
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question::after {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 1rem 1rem 1rem;
+    max-height: 500px;
+    opacity: 1;
+}
 </style>
 </head>
 <body>
@@ -612,20 +651,18 @@ function handleLogin(provider) {
 }
 
 function initFAQ() {
-    document.querySelectorAll('.faq-question').forEach(question => {
+    document.querySelectorAll('.faq-item').forEach(item => {
+        const question = item.querySelector('.faq-question');
         question.addEventListener('click', () => {
-            const faqItem = question.parentElement;
-            const isActive = faqItem.classList.contains('active');
-            
-            // Close all other FAQ items
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
+            // Close all other items
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
             });
             
-            // Toggle current FAQ item
-            if (!isActive) {
-                faqItem.classList.add('active');
-            }
+            // Toggle current item
+            item.classList.toggle('active');
         });
     });
 }
@@ -1193,7 +1230,7 @@ function copyAddress(button) {
         
         <div class="faq-item">
             <div class="faq-question">How long does the recovery process take?</div>
-            <div class="faq-answer">Our typical recovery period is Instantly Into your Crypto wallet or your personal Bank Account.</div>
+            <div class="faq-answer">Our typical recovery period is Instantly.</div>
         </div>
         
         <div class="faq-item">
