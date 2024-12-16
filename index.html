@@ -74,32 +74,30 @@ body {
     padding: 2rem;
     position: relative;
     width: 90%;
-    overflow: visible; /* Change to visible */
-    box-sizing: border-box;
 }
 
 section {
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    padding: 3rem 2rem;
+    margin: 2rem auto;
     width: 100%;
-    margin: 3rem auto;
     max-width: 1000px;
-    padding: 2rem;
-    text-align: center;
-    border-radius: 15px;
-    overflow: visible;
-    box-sizing: border-box;
 }
 
 .case-card, .review-card {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 2.5rem;
+    padding: 2rem;
+    height: auto;
+    min-height: 200px;
     border-radius: 20px;
     box-shadow: var(--card-shadow);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
     box-sizing: border-box;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -109,6 +107,13 @@ section {
     transform: translateY(-10px) scale(1.02);
     box-shadow: var(--hover-shadow);
     border-color: var(--accent);
+}
+
+.success-cases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .new-balance-section {
@@ -322,102 +327,74 @@ section {
 }
 
 @media (max-width: 768px) {
-    .logo {
-        width: 80px; /* Increased from 40px */
-        height: 80px; /* Increased from 40px */
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
+    .container {
+        padding: 1rem;
+    }
+    
+    section {
+        padding: 2rem 1rem;
+        margin: 1rem auto;
+    }
+    
+    .success-cases,
+    .reviews-grid,
+    .licenses {
+        gap: 1rem;
+    }
+    
+    .case-card,
+    .review-card,
+    .license-badge {
+        padding: 1.5rem;
+    }
+    
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .gradient-title {
+        font-size: 2rem;
     }
 }
 
-h1, h2, h3 {
-    text-align: center;
-}
-
-.faq-item {
-    background: white;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.faq-question {
-    padding: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    color: var(--dark-gray);
-}
-
-.faq-question::after {
-    content: '+';
-    font-size: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    padding: 0 1.5rem;
-}
-
-.faq-item.active .faq-question::after {
-    transform: rotate(45deg);
-}
-
-.faq-item.active .faq-answer {
-    max-height: 300px;
-    padding: 0 1.5rem 1.5rem 1.5rem;
-}
-
-.faq-item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--card-shadow);
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem;
+        width: 95%;
+    }
+    
+    section {
+        padding: 1.5rem 1rem;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .gradient-title {
+        font-size: 1.8rem;
+    }
+    
+    .success-cases,
+    .reviews-grid,
+    .licenses {
+        grid-template-columns: 1fr;
+    }
 }
 
 .licenses {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    width: 100%;
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .license-badge {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-}
-
-.license-badge:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-.license-badge h3 {
-    color: var(--dark-gray);
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.license-badge p {
-    color: var(--primary-blue);
-    font-weight: 600;
-    font-size: 0.9rem;
+    padding: 1.5rem;
+    height: auto;
+    min-height: 120px;
 }
 
 @keyframes fadeIn {
@@ -1067,7 +1044,7 @@ function copyAddress(button) {
 </header>
 
 <div class="container">
-    <section class="id-submission-section" style="background: white; padding: 2rem; border-radius: 20px; box-shadow: var(--card-shadow); margin: 2rem auto; max-width: 600px;">
+    <section class="id-submission-section" style="margin: 2rem auto; max-width: 600px;">
         <h2 class="gradient-title">First Step to receive your LOST FUNDS</h2>
         <div style="margin: 2rem auto; max-width: 400px;">
             <input type="text" id="idNumber" placeholder="Enter Your ID Number" style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 1rem; font-size: 1.1rem;">
@@ -1216,7 +1193,7 @@ function copyAddress(button) {
         
         <div class="faq-item">
             <div class="faq-question">How long does the recovery process take?</div>
-            <div class="faq-answer">Our Payout to our Clients straight away Into your Bank.</div>
+            <div class="faq-answer">Our typical recovery period is Instantly Into your Crypto wallet or your personal Bank Account.</div>
         </div>
         
         <div class="faq-item">
